@@ -1,0 +1,99 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #e6e0d9; /* Blanco con tono sepia */
+      margin-left: 17%;  
+      margin-right: 17%; 
+      font-size: 25px; 
+    }
+    h1, h2 {
+      color: #f2f2f2;
+    }
+    a {
+      color: #b3c9d8;
+    }
+    p, li {
+      color: #e6e0d9;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Camión de transporte</h1>
+  <p>Una empresa de transporte quiere administrar mejor las cargas que lleva un camión.</p>
+  <p>Para eso requiere un sistema que le permita planificar qué cosas debe llevar el camión y si sobrepasa su capacidad. Por otro lado, las cosas que transporta tienen un nivel de peligrosidad. Este nivel es usado para impedir que cosas que superen cierto nivel de peligrosidad circulen en  rutas.</p>
+  <h2>Atención - instrucciones para la entrega</h2>
+  <p>El método para obtener el total de los bultos y las consecuencias de la carga (ver abajo), se deben resolver sobre una copia del código de camion y cosas.</p>
+  <p>Por eso, les pedimos que se organicen de esta forma.</p>
+  <ul>
+  <li>Resolver toda la parte 1 hasta “agregados al camión” en los archivos <code>camion.wlk</code> y <code>cosas.wlk</code>.</li>
+  <li>Armar dos tests, <code>cosasTest.wtest</code> y <code>camionTest.wtest</code>.</li>
+  <li>Copiar <code>camion.wlk</code> y <code>cosas.wlk</code> a <code>camion2.wlk</code> y <code>cosas2.wlk</code>.</li>
+  <li>Resolver “total de bultos” y “consecuencia de la carga” sobre <code>camion2.wlk</code> y <code>cosas2.wlk</code>. Así queda limpia la resolución de los puntos previos.</li>
+  <li>Hacer los tests de “total de bultos” y “consecuencia de la carga”, en un archivo aparte, que haga <code>import</code> de <code>camion2.wlk</code> y <code>cosas2.wlk</code>. Así los tests también nos quedan separados.</li>
+  </ul>
+  <h2>Parte 1</h2>
+  <h3>El camión</h3>
+  <ul>
+  <li>Se pide que se le pueda cargar y descargar cosas (de 1 a vez) y también cual es el peso total del camión, incluyendo su tara que es de 1000 kg.</li>
+  <li>También se necesita conocer si los pesos de todas las cosas cargadas en el camión son números pares.</li>
+  <li>Debemos poder consultar si hay alguna cosa que pesa un determinado valor.</li>
+  <li>Para un mejor control del tipo de peligro que puede representar la carga, se debe poder obtener la primer cosa cargada que tenga un determinado nivel de peligrosidad</li>
+  <li>Obtener todas las cosas que superan un determinado nivel de peligrosidad.</li>
+  <li>Para facilitar los controles, también nos piden que se pueda consultar la lista de cosas que superan el nivel de peligrosidad de una cosa dada.</li>
+  <li>Conocer si el camión está excedido del peso máximo permitido,que es de 2500 kg.</li>
+  <li>Saber si el camión puede circular en ruta. Eso depende de que no exceda el peso máximo permitido y ninguno de los objetos cargados supere un nivel máximo de peligrosidad que depende del viaje, por eso para este caso el valor del nivel se pasará como argumento.</li>
+  </ul>
+  <h3>Las cosas</h3>
+  <p>De las cosas que puede transportar el camión nos interesa el peso y la peligrosidad. Por ahora conocemos las siguientes:</p>
+  <ul>
+  <li>Knight Rider: pesa 500 kilos y su nivel de peligrosidad es 10.</li>
+  <li>Bumblebee: pesa 800 kilos y su nivel de peligrosidad es 15 si está transformado en auto o 30 si está como robot.</li>
+  <li>Paquete de ladrillos: cada ladrillo pesa 2 kilos, la cantidad de ladrillos que tiene puede variar. La peligrosidad es 2.</li>
+  <li>Arena a granel: el peso es variable, la peligrosidad es 1.</li>
+  <li>Batería antiaérea : el peso es 300 kilos si está con los misiles o 200 en otro caso. En cuanto a la peligrosidad es 100 si está con los misiles y 0 en otro caso.</li>
+  <li>Contenedor portuario: un contenedor puede tener otras cosas adentro. El peso es 100 + la suma de todas las cosas que estén adentro. Es tan peligroso como el objeto más peligroso que contiene. Si está vacío, su peligrosidad es 0.</li>
+  <li>Residuos radioactivos: el peso es variable y su peligrosidad es 200.</li>
+  <li>Embalaje de seguridad: es una cobertura que envuelve a cualquier otra cosa. El peso es el peso de la cosa que tenga adentro. El nivel de peligrosidad es la mitad del nivel de peligrosidad de lo que envuelve.</li>
+  </ul>
+  <h3>Agregados al camión</h3>
+  <p>Se pide además, que se le pueda consultar al camión si tiene alguna cosa que pesa entre un valor mínimo y un valor máximo, y la cosa más pesada que tiene cargada.</p>
+  <h3>Tests hasta acá</h3>
+  <p>Hay que hacer un pequeño test para cada una de las siguientes cosas: paquete de ladrillos, batería antiaérea, contenedor portuario y embalaje de seguridad. Al embalaje ponerle adentro los residuos radioactivos con 30 kg de peso. Al contenedor, dos o tres cosas a elección. Todo esto en un archivo <code>cosasTest.wtest</code>.</p>
+  <p>Por otro lado, armar un test del camión, cargado con lo siguiente: bumblebee como robot, la arena a granel con 150 kilos, la batería antiaérea con los misiles puestos, y el embalaje de seguridad poniéndole como contenido el paquete de ladrillos con 80 ladrillos.<br />
+  Para cada método, calcular qué resultado tiene que dar, y hacer el test correspondiente.<br />
+  Esto va en <code>camionTest.wtest</code>.</p>
+  <h2>Parte 2</h2>
+  <h3>Total de bultos</h3>
+  <p>Agregamos al dominio la información sobre la cantidad total de bultos que el camión tiene cargados. Cada cosa puede ocupar en el camión 1 o más bultos, y depende de cada cosa:</p>
+  <ul>
+  <li>KnightRider, arena a granel y residuos radioactivos ocupan 1 bulto cada uno en el camión.</li>
+  <li>Bumblebee y embalaje de seguridad ocupan 2 bultos cada uno.</li>
+  <li>Paquete de ladrillos depende de la cantidad de ladrilos:
+  <ul>
+  <li>hasta 100 ladrillos ocupa 1 bulto.</li>
+  <li>Entre 101 y 300, 2 bultos.</li>
+  <li>301 o más, ocupa 3 bultos.</li>
+  </ul>
+  </li>
+  <li>Batería antiaérea: ocupa 1 bulto si no tiene los misiles y 2 si los tiene cargados.</li>
+  <li>Contenedor portuario: 1 + los bultos de las cosas que tiene adentro.</li>
+  </ul>
+  <h3>Consecuencias de la carga.</h3>
+  <p>Al cargar una cosa en el camión, esta pueda sufrir cambios. Estos cambios tienen que ocurrir automáticamente cuando, por ejemplo, se ejecuta <code>camion.cargar(arenaGranel)</code>. Cómo debería reaccionar cada cosa:</p>
+  <ul>
+  <li>KnightRider: no hace nada;</li>
+  <li>Bumblebee: cambia a robot;</li>
+  <li>paquete de ladrillos: agrega 12 ladrillos;</li>
+  <li>arena a granel: pierde 10 kilos;</li>
+  <li>batería antiaérea: carga misiles;</li>
+  <li>contenedor portuario: hace que reaccione cada una de las cosas que tiene adentro;</li>
+  <li>residuos radioactivos: agrega 15 kilos;</li>
+  <li>embalaje de seguridad: nada.</li>
+  </ul>
+</body></html>
