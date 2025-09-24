@@ -4,9 +4,16 @@ object knightRider {
 }
 
 object bumbleBee {
+  var estaEnAuto = true
   method peso () = 800
   // voy a querer el getter para los test
-  method estaEnAuto () = true
+  method estaEnAuto(){
+    return estaEnAuto
+  } 
+  // Notar que un método es de consulta y el otro es un setter para controlar el estado en vez de alternarlo.
+  method estaEnRobot() {
+    estaEnAuto = false
+  }
   method peligrosidad(){
     if (self.estaEnAuto()) {
       return 15
