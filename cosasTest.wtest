@@ -1,9 +1,13 @@
 import cosas.*
 
-describe "group of test for cosas" {
+describe "test de cosas" {
 
-  test "first test" {
-    assert.that(true)
+  test "Bumblebee inicialmente está en auto y su peligrosidad es 15" {
+    assert.equals(15, bumbleBee.peligrosidad())
+  }
+  test "Bumblebee se transforma a robot y ahora su peligrosidad es 30"{
+    bumbleBee.estaEnRobot()
+    assert.equals(30, bumbleBee.peligrosidad())
   }
 
 }
