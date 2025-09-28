@@ -47,7 +47,7 @@ object arenaAGranel {
 }
 
 object  bateriaAntiAerea {
-  var estaConMisiles = true
+  var estaConMisiles = false
   method cargarMisiles(){
     estaConMisiles = true
   }
@@ -75,6 +75,9 @@ object  bateriaAntiAerea {
 
 object contenedorPortuario {
   const contenido = []
+  method agregar(unaCosa){
+    contenido.add(unaCosa)
+  }
   method peso() = 100 + contenido.sum{o => o.peso()}
   method peligrosidad(){
     if (contenido.isEmpty()){
@@ -91,8 +94,8 @@ object contenedorPortuario {
 
 object  residuosRadioactivos {
   var peso = 0
-  method peso(){
-    return peso
+  method cantidad(unPeso){
+    peso = unPeso
   }
   method peligrosidad() = 200
 }
