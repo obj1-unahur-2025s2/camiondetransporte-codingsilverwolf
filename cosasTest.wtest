@@ -6,8 +6,32 @@ describe "test de cosas" {
     assert.equals(15, bumbleBee.peligrosidad())
   }
   test "Bumblebee se transforma a robot y ahora su peligrosidad es 30"{
-    bumbleBee.estaEnRobot()
+    bumbleBee.transformarEnRobot()
     assert.equals(30, bumbleBee.peligrosidad())
   }
 
+  test "paquete con 50 ladrillos pesa 100" {
+    paqueteDeLadrillos.agregar(50)
+    assert.equals(100,paqueteDeLadrillos.peso())
+  }
+
+  test "batería antiaérea con misiles tiene peligrosidad de 300 y un peso de 300"{
+    bateriaAntiAerea.cargarMisiles()
+    assert.equals(300, bateriaAntiAerea.peligrosidad())
+    assert.equals(300, bateriaAntiAerea.peso())
+  }
+
+  test "contenedor portuario con Bumblebee en robot y Knigth Rider tiene peligrosidad de 30 "{
+    bumbleBee.transformarEnRobot()
+    contenedorPortuario.agregar(bumbleBee)
+    contenedorPortuario.agregar(knightRider)
+    assert.equals(30, contenedorPortuario.peligrosidad())
+  }
+
+  test "Embalaje de seguridad con 30 kg de residuos radioactivos tiene 100 de peligrosidad"{
+    residuosRadioactivos.cantidad(30)
+    embalajeDeSeguridad.envolver(residuosRadioactivos)
+    assert.equals(100,embalajeDeSeguridad.peligrosidad())
+  }
 }
+
