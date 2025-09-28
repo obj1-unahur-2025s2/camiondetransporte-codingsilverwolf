@@ -81,9 +81,9 @@ object contenedorPortuario {
       return 0
     }
     else {
-      return contenido.map({o => o.peligrosidad()}).max() 
+      return contenido.max({o => o.peligrosidad()}).peligrosidad()
       // comparar con 
-      // contenido.max({o => o.peligrosidad()}).peligrosidad()
+      // contenido.map({o => o.peligrosidad()}).max()
     }
   }
   
@@ -98,7 +98,10 @@ object  residuosRadioactivos {
 }
 
 object  embalajeDeSeguridad {
-  var contenido = null
+  var contenido = paqueteDeLadrillos
+  method envolver(unaCosa){
+    contenido = unaCosa
+  }
   method peso() {
     return contenido.peso()
     
@@ -106,6 +109,6 @@ object  embalajeDeSeguridad {
   method peligrosidad(){
     return contenido.peligrosidad()/2
   }
-  
 }
+
 
