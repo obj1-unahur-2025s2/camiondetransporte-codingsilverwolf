@@ -6,16 +6,14 @@ object knightRider {
 object bumbleBee {
   var estaEnAuto = true
   method peso () = 800
-  // voy a querer el getter para los test
-  method estaEnAuto(){
-    return estaEnAuto
+  method transformarEnAuto(){
+    estaEnAuto = true
   } 
-  // Notar que un método es de consulta y el otro es un setter para controlar el estado en vez de alternarlo.
-  method estaEnRobot() {
+  method transformarEnRobot() {
     estaEnAuto = false
   }
   method peligrosidad(){
-    if (self.estaEnAuto()) {
+    if (estaEnAuto) {
       return 15
     }
     else {
@@ -49,15 +47,28 @@ object arenaAGranel {
 }
 
 object  bateriaAntiAerea {
-  method estaConMisiles(){
-    return true
+  var estaConMisiles = true
+  method cargarMisiles(){
+    estaConMisiles = true
   }
+  method descargarMisiles(){
+    estaConMisiles = false
+  }
+
   method peso(){
-    if (self.estaConMisiles()) {
+    if (estaConMisiles) {
       return 300
     }
     else {
       return 200
+    }
+  }
+  method peligrosidad(){
+    if (estaConMisiles){
+      return 300
+    }
+    else{
+      return 0
     }
   }  
 }
