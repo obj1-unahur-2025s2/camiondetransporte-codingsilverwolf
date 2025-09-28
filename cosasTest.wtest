@@ -10,4 +10,10 @@ describe "test de cosas" {
     assert.equals(30, bumbleBee.peligrosidad())
   }
 
+  test "Se agregan 10 ladrillos al paquete de ladrillos y ahora su peso es 20"{
+    paqueteDeLadrillos.agregar(10)
+    assert.equals(20, paqueteDeLadrillos.peso())
+  }
+
 }
+
