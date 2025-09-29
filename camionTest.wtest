@@ -1,12 +1,12 @@
 import camion.*
 import cosas.*
 
-describe "test camion" {
+describe "test camion parte 2" {
 
   method initialize(){
-    bumbleBee.transformarEnRobot()
+    // bumbleBee.transformarEnRobot()
     arenaAGranel.agregar(150)
-    bateriaAntiAerea.cargarMisiles()
+    // bateriaAntiAerea.cargarMisiles()
     paqueteDeLadrillos.agregar(80)
     embalajeDeSeguridad.envolver(paqueteDeLadrillos)
     camion.cargar(bumbleBee)
@@ -15,8 +15,8 @@ describe "test camion" {
     camion.cargar(embalajeDeSeguridad)
   }
 
-  test "El camión con carga actual tiene un peso de 2410" {
-    assert.equals(2410, camion.peso())
+  test "El camión con carga actual tiene un peso de 2400" {
+    assert.equals(2400, camion.peso())
   }
   test "El camión con carga actual contiene sólo pesos pares" {
     assert.that(camion.contieneSoloPesosPares())
@@ -46,4 +46,15 @@ describe "test camion" {
     assert.that(camion.puedeCircularEnRutaConPeligrosidad(300))
   }
 
+  test "Se descarga el embalajeDeSeguridad y se cargan 80 ladrillos sueltos. Ahora el camión pesa 2424" {
+    camion.descargar(embalajeDeSeguridad)
+    camion.cargar(paqueteDeLadrillos)
+    assert.equals(2424, camion.peso())
+  }
+
+  test "La cantidad de bultos cargados en el camión es 6" {
+    camion.descargar(embalajeDeSeguridad)
+    camion.cargar(paqueteDeLadrillos)
+    assert.equals(6, camion.bultosCargados())
+  }
 }
