@@ -1,9 +1,49 @@
 import camion.*
+import cosas.*
 
-describe "group of test for camion" {
+describe "test camion" {
 
-  test "first test" {
-    assert.that(true)
+  method initialize(){
+    bumbleBee.transformarEnRobot()
+    arenaAGranel.agregar(150)
+    bateriaAntiAerea.cargarMisiles()
+    paqueteDeLadrillos.agregar(80)
+    embalajeDeSeguridad.envolver(paqueteDeLadrillos)
+    camion.cargar(bumbleBee)
+    camion.cargar(arenaAGranel)
+    camion.cargar(bateriaAntiAerea)
+    camion.cargar(embalajeDeSeguridad)
+  }
+
+  test "El camión con carga actual tiene un peso de 2410" {
+    assert.equals(2410, camion.peso())
+  }
+  test "El camión con carga actual contiene sólo pesos pares" {
+    assert.that(camion.contieneSoloPesosPares())
+  }
+
+  test "El camión con carga actual tiene una cosa de peso 150" {
+    assert.that(camion.hayCosaDePeso(150))
+  }
+
+  test "La primer cosa cargada con peligrosidad 30 es bumbleBee" {
+    assert.equals(bumbleBee, camion.primerCosaDePeligrosidad(30))
+  }
+
+  test "Las cosas con peligrosidad mayor a 20 son bumbleBee y bateriaAntiAerea" {
+    assert.equals([bumbleBee, bateriaAntiAerea], camion.cosasConPeligrosidadMayorA(20))
+  }
+
+  test "Las cosas con peligrosidad mayor a la de arenaAGranel son bumbleBee y bateriaAntiAerea" {
+    assert.equals([bumbleBee, bateriaAntiAerea], camion.cosasConPeligrosidadMayorACosa(arenaAGranel))
+  }
+
+  test "El camión con carga actual no está excedido de peso" {
+    assert.notThat(camion.estaExcedidoDePeso())
+  }
+
+  test "El camión con carga actual puede circular en ruta con peligrosidad 300" {
+    assert.that(camion.puedeCircularEnRutaConPeligrosidad(300))
   }
 
 }
