@@ -27,4 +27,10 @@ object camion {
   method puedeCircularEnRutaConPeligrosidad(unNivelDePeligrosidad){
     return not self.estaExcedidoDePeso() && cosasCargadas.all({c => c.peligrosidad() <= unNivelDePeligrosidad})
   }
+  method bultosCargados(){
+    return cosasCargadas.sum({c => c.bultosQueOcupa()})
+  }
+  method descargar(cosa){
+    cosasCargadas.remove(cosa)
+  }
 }
