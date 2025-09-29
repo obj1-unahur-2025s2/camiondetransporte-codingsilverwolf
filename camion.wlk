@@ -2,6 +2,7 @@ object camion {
   const cosasCargadas = []
   method cargar(cosa){
     cosasCargadas.add(cosa)
+    cosa.accionAlCargarEnCamion()
   }
   method peso(){
     return 1000 + cosasCargadas.map({c => c.peso()}).sum()
