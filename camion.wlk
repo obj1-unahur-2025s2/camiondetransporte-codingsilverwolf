@@ -7,19 +7,19 @@ object camion {
     return 1000 + cosasCargadas.map({c => c.peso()}).sum()
   }
   method contieneSoloPesosPares(){
-    cosasCargadas.all({c => c.peso().even()})
+    return cosasCargadas.all({c => c.peso().even()})
   }
   method hayCosaDePeso(unPeso){
-    cosasCargadas.any({c => c.peso() == unPeso})
+    return cosasCargadas.any({c => c.peso() == unPeso})
   }
   method primerCosaDePeligrosidad(nivelDePeligrosidad){
-    cosasCargadas.filter({c => c.peligrosidad()== nivelDePeligrosidad}).first()
+    return cosasCargadas.filter({c => c.peligrosidad()== nivelDePeligrosidad}).first()
   }
   method cosasConPeligrosidadMayorA(nivelDePeligrosidad){
-    cosasCargadas.filter({c => c.peligrosidad()> nivelDePeligrosidad})
+    return cosasCargadas.filter({c => c.peligrosidad()> nivelDePeligrosidad})
   }
   method cosasConPeligrosidadMayorACosa(unaCosa){
-    cosasCargadas.filter({c => c.peligrosidad()> unaCosa.peligrosidad()})
+    return cosasCargadas.filter({c => c.peligrosidad()> unaCosa.peligrosidad()})
   }
   method estaExcedidoDePeso(){
     return self.peso() > 2500
