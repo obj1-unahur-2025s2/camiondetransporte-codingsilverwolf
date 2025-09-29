@@ -1,6 +1,8 @@
 object knightRider {
   method peso() = 500
-  method peligrosidad() = 10    
+  method peligrosidad() = 10
+  method bultosQueOcupa() = 1
+  method accionAlCargarEnCamion(){}    
 }
 
 object bumbleBee {
@@ -20,6 +22,10 @@ object bumbleBee {
       return 30
     }
   }
+  method bultosQueOcupa() = 2
+  method accionAlCargarEnCamion(){
+    self.transformarEnRobot()
+  }
 }
 
 object paqueteDeLadrillos {
@@ -30,6 +36,21 @@ object paqueteDeLadrillos {
   }
   method  peligrosidad() {
     return 1    
+  }
+
+  method bultosQueOcupa() {
+    if (cantidad <= 100) {
+      return 1
+    }
+    else if (cantidad <= 300){
+    return 2   
+    }
+    else {
+      return 3
+    }
+  }
+  method accionAlCargarEnCamion(){
+    cantidad+=12
   }
 }
 
@@ -44,6 +65,10 @@ object arenaAGranel {
   method peligrosidad(){
     return 2
   }
+  method bultosQueOcupa() = 1
+  method accionAlCargarEnCamion(){
+    peso -= 10
+  } 
 }
 
 object  bateriaAntiAerea {
@@ -70,7 +95,18 @@ object  bateriaAntiAerea {
     else{
       return 0
     }
-  }  
+  }
+  method bultosQueOcupa(){
+    if (estaConMisiles){
+      return 2
+    }
+    else{
+      return 1
+    }
+  }
+  method accionAlCargarEnCamion(){
+    self.cargarMisiles()
+  }
 }
 
 object contenedorPortuario {
@@ -89,7 +125,12 @@ object contenedorPortuario {
       // contenido.map({o => o.peligrosidad()}).max()
     }
   }
-  
+  method bultosQueOcupa(){
+    return 1 + contenido.sum({o => o.bultosQueOcupa()})
+  }
+  method accionAlCargarEnCamion(){
+    contenido.forEach({o => o.accionAlCargarEnCamion()})
+  }
 }
 
 object  residuosRadioactivos {
@@ -98,6 +139,10 @@ object  residuosRadioactivos {
     peso = unPeso
   }
   method peligrosidad() = 200
+  method bultosQueOcupa() = 1
+  method accionAlCargarEnCamion(){
+    peso += 15
+  }  
 }
 
 object  embalajeDeSeguridad {
@@ -112,6 +157,8 @@ object  embalajeDeSeguridad {
   method peligrosidad(){
     return contenido.peligrosidad()/2
   }
+  method bultosQueOcupa() = 2
+  method accionAlCargarEnCamion(){}
 }
 
 
